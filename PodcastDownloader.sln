@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{0A3DDEC5-4E63-43F8-A8BA-9A66E0598DF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodcastDownloaderGUI", "PodcastDownloaderGUI\PodcastDownloaderGUI.csproj", "{A0EC2CFE-7256-4DB1-B01B-4D5B920EF394}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A3DDEC5-4E63-43F8-A8BA-9A66E0598DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A3DDEC5-4E63-43F8-A8BA-9A66E0598DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A3DDEC5-4E63-43F8-A8BA-9A66E0598DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A3DDEC5-4E63-43F8-A8BA-9A66E0598DF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0EC2CFE-7256-4DB1-B01B-4D5B920EF394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0EC2CFE-7256-4DB1-B01B-4D5B920EF394}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0EC2CFE-7256-4DB1-B01B-4D5B920EF394}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0EC2CFE-7256-4DB1-B01B-4D5B920EF394}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA604B6B-DE5E-4429-B4C1-E847CE482945}
+	EndGlobalSection
+EndGlobal
