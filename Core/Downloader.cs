@@ -45,6 +45,11 @@ namespace Core
             return _client.DownloadString(url);
         }
 
+        public async Task<string> DownloadStringAsync(string url)
+        {
+            return await _client.DownloadStringTaskAsync(url);
+        }
+
         public async Task<PodcastItem> DownloadPodcastAsync(PodcastItem podcast, string outputFolder, CancellationToken token, IProgress<int> progress = null)
         {
             // TODO: this line does not belong here.

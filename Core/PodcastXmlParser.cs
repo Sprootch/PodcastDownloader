@@ -7,16 +7,10 @@ namespace Core
 {
     public class PodcastXmlParser
     {
-        public IReadOnlyCollection<PodcastItem> GetPodcasts(string url)
+        public IReadOnlyCollection<PodcastItem> GetPodcasts(string xmlPodcastList)
         {
-            string index;
-            using (var dl = new Downloader())
-            {
-                index = dl.DownloadString(url);
-            }
-
-            // TODO: refactor
-            var doc = XDocument.Parse(index);
+            // TODO: error checking
+            var doc = XDocument.Parse(xmlPodcastList);
             var items = 
             (
                 from x in doc.Root.Elements("channel").Elements("item")

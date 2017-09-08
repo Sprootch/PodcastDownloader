@@ -25,21 +25,27 @@ namespace PodcastDownloaderGUI
         private async void Form1_Load(object sender, EventArgs e)
         {
             progressBar.Style = ProgressBarStyle.Marquee;
-            object[] podcasts = await Task.Run(() => GetLastPodcasts(10));
+            object[] podcasts = await GetLastPodcasts(10);
             progressBar.Style = ProgressBarStyle.Blocks;
 
             podcastsList.Items.AddRange(podcasts);
             podcastsList.SelectedIndex = 0;
         }
 
-        private static PodcastItem[] GetLastPodcasts(int numberOfItems)
+        private static async Task<PodcastItem[]> GetLastPodcasts(int numberOfItems)
         {
             //private const string Url = "https://www.rtl.fr/podcast/les-grosses-tetes.xml";
             //private const string Url = "https://rss.art19.com/the-curiosity-podcast";
             //private const string Url = "http://feeds.djpod.com/dj-hs";
 
+            string xmlList;
+            using (var dl = new Downloader())
+            {
+                xmlList = await dl.DownloadStringAsync("https://www.rtl.fr/podcast/les-grosses-tetes.xml");
+            }
+
             var items = new PodcastXmlParser()
-                .GetPodcasts("https://www.rtl.fr/podcast/les-grosses-tetes.xml")
+                .GetPodcasts(xmlList)
                 .OrderByDescending(i => i.PublishedDate)
                 .Take(numberOfItems)
                 .ToArray();
@@ -99,7 +105,7 @@ namespace PodcastDownloaderGUI
         private static void StartMusicPlayer(PodcastItem podcastItem)
         {
             var playerPath = PodcastDownloaderConfiguration.Instance.MusicPlayer.Path;
-            if (string.IsNullOrWhiteSpace(playerPath) || 
+            if (string.IsNullOrWhiteSpace(playerPath) ||
                 !File.Exists(playerPath)) return;
 
             var process = new Process
