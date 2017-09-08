@@ -10,24 +10,18 @@ namespace Core
             Title = title;
             DownloadUrl = downloadUrl;
             PublishedDate = publishedDate;
-            Filename = Path.GetFileName(DownloadUrl) ?? Path.GetRandomFileName();
+            Filename = System.IO.Path.GetFileName(DownloadUrl) ?? System.IO.Path.GetRandomFileName();
         }
 
-        public string Title { get; private set; }
-        public string DownloadUrl { get; private set; }
-        public DateTime PublishedDate { get; private set; }
-        public string Filename { get; private set; }
+        public string Title { get; }
+        public string DownloadUrl { get; }
+        public DateTime PublishedDate { get; }
+        public string Filename { get; }
 
-        public string LocalPath { get; set; }
+        public string Path { get; set; }
 
-        public bool IsDownloaded
-        {
-            get { return !string.IsNullOrWhiteSpace(LocalPath); }
-        }
+        public bool IsDownloaded => File.Exists(Path);
 
-        public override string ToString()
-        {
-            return Title;
-        }
+        public override string ToString() => Title;
     }
 }

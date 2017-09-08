@@ -15,9 +15,9 @@ namespace Core
             (
                 from x in doc.Root.Elements("channel").Elements("item")
                 select new PodcastItem(x.Element("title").Value, x.Element("guid").Value, DateTime.Parse(x.Element("pubDate").Value))
-            ).ToArray();
+            );
 
-            return items;
+            return items.ToArray();
         }
     }
 }

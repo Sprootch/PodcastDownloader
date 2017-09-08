@@ -50,11 +50,8 @@ namespace Core
             return await _client.DownloadStringTaskAsync(url);
         }
 
-        public async Task<PodcastItem> DownloadPodcastAsync(PodcastItem podcast, string outputFolder, CancellationToken token, IProgress<int> progress = null)
+        public async Task<PodcastItem> DownloadPodcastAsync(PodcastItem podcast, CancellationToken token, IProgress<int> progress = null)
         {
-            // TODO: this line does not belong here.
-            var outputFile = Path.Combine(outputFolder, podcast.Filename);
-
             token.Register(() => _client.CancelAsync());
             if (progress != null)
             {
@@ -62,13 +59,11 @@ namespace Core
             }
             try
             {
-                await _client.DownloadFileTaskAsync(podcast.DownloadUrl, outputFile);
-
-                podcast.LocalPath = outputFile;
+                await _client.DownloadFileTaskAsync(podcast.DownloadUrl, podcast.Path);
             }
             catch (WebException we)
             {
-                TryDeleteFile(outputFile);
+                TryDeleteFile(podcast.Path);
                 if (we.Status != WebExceptionStatus.RequestCanceled)
                     throw;
             }

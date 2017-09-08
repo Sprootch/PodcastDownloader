@@ -47,6 +47,7 @@
       <DependentUpon>ConfigurationSectionDesigner.csd</DependentUpon>
     </Compile>
     <Compile Include="Downloader.cs" />
+    <Compile Include="MusicPlayer.cs" />
     <Compile Include="Podcast.cs" />
     <Compile Include="PodcastItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

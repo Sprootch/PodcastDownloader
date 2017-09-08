@@ -1,6 +1,5 @@
 ﻿using Core;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -12,14 +11,14 @@ namespace PodcastDownloaderGUI
     public partial class MainForm : Form
     {
         private const string Caption = @"Podcast Downloader";
-        private State _currentState;
         private CancellationTokenSource _cts;
+        private MusicPlayer _musicPlayer;
 
         public MainForm()
         {
             InitializeComponent();
 
-            _currentState = new StoppedState(this);
+            _musicPlayer = new MusicPlayer(PodcastDownloaderConfiguration.Instance.MusicPlayer.Path);
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -53,7 +52,7 @@ namespace PodcastDownloaderGUI
             return items;
         }
 
-        private async void downloadButton_Click(object sender, EventArgs e)
+        private async void DownloadButton_Click(object sender, EventArgs e)
         {
             if (_cts != null)
             {
@@ -79,11 +78,12 @@ namespace PodcastDownloaderGUI
 
             try
             {
+                podcast.Path = Path.Combine(@"C:\Temp\", podcast.Filename);
+
                 using (var downloader = new Downloader())
                 {
                     var progress = new Progress<int>(progressPercentage => progressBar.Value = progressPercentage);
-                    await downloader.DownloadPodcastAsync(podcast,
-                        @"C:\Temp\", _cts.Token, progress);
+                    await downloader.DownloadPodcastAsync(podcast, _cts.Token, progress);
                 }
             }
             catch (Exception ex)
@@ -102,25 +102,14 @@ namespace PodcastDownloaderGUI
             return podcast;
         }
 
-        private static void StartMusicPlayer(PodcastItem podcastItem)
+        private void StartMusicPlayer(PodcastItem podcastItem)
         {
-            var playerPath = PodcastDownloaderConfiguration.Instance.MusicPlayer.Path;
-            if (string.IsNullOrWhiteSpace(playerPath) ||
-                !File.Exists(playerPath)) return;
+            if (!_musicPlayer.IsAvailable) return;
 
-            var process = new Process
-            {
-                StartInfo =
-                {
-                    FileName = playerPath,
-                    Arguments = string.Format("/play \"{0}\"", podcastItem.LocalPath),
-                    WorkingDirectory = Path.GetDirectoryName(playerPath) ?? "."
-                }
-            };
-            process.Start();
+            _musicPlayer.Play(podcastItem.Path);
         }
 
-        private void podcastsList_SelectedIndexChanged(object sender, EventArgs e)
+        private void PodcastsList_SelectedIndexChanged(object sender, EventArgs e)
         {
             downloadButton.Enabled = podcastsList.SelectedItem != null;
         }
@@ -148,10 +137,6 @@ namespace PodcastDownloaderGUI
 
             public override void Change()
             {
-
-
-                _form._currentState = new StoppedState(_form);
-
                 //downloadButton.Enabled = true;
                 //podcastsList.Enabled = true;
             }
@@ -168,9 +153,6 @@ namespace PodcastDownloaderGUI
 
             public override void Change()
             {
-
-
-                _form._currentState = new DownloadingState(_form);
             }
         }
     }

@@ -43,7 +43,7 @@
             this.downloadButton.TabIndex = 0;
             this.downloadButton.Text = "Download";
             this.downloadButton.UseVisualStyleBackColor = true;
-            this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
+            this.downloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
             // 
             // podcastsList
             // 
@@ -53,7 +53,7 @@
             this.podcastsList.Name = "podcastsList";
             this.podcastsList.Size = new System.Drawing.Size(264, 21);
             this.podcastsList.TabIndex = 1;
-            this.podcastsList.SelectedIndexChanged += new System.EventHandler(this.podcastsList_SelectedIndexChanged);
+            this.podcastsList.SelectedIndexChanged += new System.EventHandler(this.PodcastsList_SelectedIndexChanged);
             // 
             // progressBar
             // 
