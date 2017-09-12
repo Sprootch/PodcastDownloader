@@ -57,6 +57,27 @@ namespace Core
             return podcast;
         }
 
+        public PodcastItem DownloadPodcast(PodcastItem podcast, CancellationToken token, IProgress<int> progress = null)
+        {
+            token.Register(() => _client.CancelAsync());
+            if (progress != null)
+            {
+                _client.DownloadProgressChanged += (_, e) => { progress.Report(e.ProgressPercentage); };
+            }
+            try
+            {
+                _client.DownloadFile(podcast.DownloadUrl, podcast.Path);
+            }
+            catch (WebException we)
+            {
+                TryDeleteFile(podcast.Path);
+                if (we.Status != WebExceptionStatus.RequestCanceled)
+                    throw;
+            }
+
+            return podcast;
+        }
+
         private static void TryDeleteFile(string file)
         {
             try

@@ -11,14 +11,15 @@ namespace PodcastDownloaderGUI
     public partial class MainForm : Form
     {
         private const string Caption = @"Podcast Downloader";
-        private CancellationTokenSource _cts;
         private MusicPlayer _musicPlayer;
+        private State _currentState;
 
         public MainForm()
         {
             InitializeComponent();
 
             _musicPlayer = new MusicPlayer(PodcastDownloaderConfiguration.Instance.MusicPlayer.Path);
+            _currentState = new StoppedState(this);
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -53,54 +54,9 @@ namespace PodcastDownloaderGUI
             return items;
         }
 
-        private async void DownloadButton_Click(object sender, EventArgs e)
+        private void DownloadButton_Click(object sender, EventArgs e)
         {
-            if (_cts != null)
-            {
-                _cts.Cancel();
-                return;
-            }
-
-            var selectedPodcast = podcastsList.SelectedItem as PodcastItem;
-            if (selectedPodcast == null) return;
-
-            await DownloadPodcast(selectedPodcast);
-            if (selectedPodcast.IsDownloaded)
-            {
-                StartMusicPlayer(selectedPodcast);
-            }
-        }
-
-        private async Task<PodcastItem> DownloadPodcast(PodcastItem podcast)
-        {
-            downloadButton.Text = @"Cancel";
-            podcastsList.Enabled = false;
-            _cts = new CancellationTokenSource();
-
-            try
-            {
-                podcast.Path = Path.Combine(@"C:\Temp\", podcast.Filename);
-
-                using (var downloader = new Downloader())
-                {
-                    var progress = new Progress<int>(progressPercentage => progressBar.Value = progressPercentage);
-                    await downloader.DownloadPodcastAsync(podcast, _cts.Token, progress);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            finally
-            {
-                downloadButton.Text = @"Download";
-                podcastsList.Enabled = true;
-
-                _cts.Dispose();
-                _cts = null;
-            }
-
-            return podcast;
+            _currentState.Change();
         }
 
         private void StartMusicPlayer(PodcastItem podcastItem)
@@ -117,29 +73,36 @@ namespace PodcastDownloaderGUI
 
         abstract class State
         {
-            protected readonly MainForm _form;
+            private readonly MainForm _form;
 
             protected State(MainForm form)
             {
                 _form = form;
             }
 
+            protected MainForm Form => _form;
+
             public abstract void Change();
         }
 
         class DownloadingState : State
         {
-            public DownloadingState(MainForm form)
+            private readonly CancellationTokenSource cts;
+
+            public DownloadingState(MainForm form, CancellationTokenSource cts)
                 : base(form)
             {
-                _form.downloadButton.Text = "Cancel";
-                _form.podcastsList.Enabled = false;
+                this.cts = cts;
+
+                Form.downloadButton.Text = "Cancel";
+                Form.podcastsList.Enabled = false;
             }
 
             public override void Change()
             {
-                //downloadButton.Enabled = true;
-                //podcastsList.Enabled = true;
+                cts.Cancel();
+
+                Form._currentState = new StoppedState(Form);
             }
         }
 
@@ -148,12 +111,26 @@ namespace PodcastDownloaderGUI
             public StoppedState(MainForm form)
                 : base(form)
             {
-                _form.downloadButton.Text = "Download";
-                _form.podcastsList.Enabled = true;
+                Form.downloadButton.Text = "Download";
+                Form.podcastsList.Enabled = true;
             }
 
             public override void Change()
             {
+                var selectedPodcast = Form.podcastsList.SelectedItem as PodcastItem;
+                if (selectedPodcast == null) return;
+
+                selectedPodcast.Path = Path.Combine(@"C:\Temp\", selectedPodcast.Filename);
+
+                var cts = new CancellationTokenSource();
+                IProgress<int> progress = new Progress<int>(progressPercentage => Form.progressBar.Value = progressPercentage);
+                using (var downloader = new Downloader())
+                {
+                    Task.Run(() => downloader.DownloadPodcast(selectedPodcast, cts.Token, progress))
+                        .ContinueWith(task => Form._currentState = new StoppedState(Form), CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, TaskScheduler.FromCurrentSynchronizationContext());
+                }
+
+                Form._currentState = new DownloadingState(Form, cts);
             }
         }
     }
