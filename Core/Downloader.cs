@@ -18,25 +18,11 @@ namespace Core
         {
             _client = new WebClient
             {
-                Encoding = Encoding.UTF8,
-                Proxy = GetProxy()
+                Encoding = Encoding.UTF8
             };
             _client.DownloadProgressChanged += (_, e) =>
             {
                 DownloadProgress?.Invoke(this, e);
-            };
-        }
-
-        private static IWebProxy GetProxy()
-        {
-            var proxyConfig = PodcastDownloaderConfiguration.Instance.Proxy;
-            if (proxyConfig == null || string.IsNullOrWhiteSpace(proxyConfig.Address.Url)) return WebRequest.GetSystemWebProxy();
-
-            return new WebProxy(proxyConfig.Address.Url, proxyConfig.Address.Port)
-            {
-                BypassProxyOnLocal = false,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(proxyConfig.Security.UserName, proxyConfig.Security.Password)
             };
         }
 

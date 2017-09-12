@@ -13,11 +13,6 @@
   <configurationElements>
     <configurationSection name="PodcastDownloaderConfiguration" codeGenOptions="Singleton" xmlSectionName="podcastDownloaderConfiguration">
       <elementProperties>
-        <elementProperty name="Proxy" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="proxy" isReadOnly="false">
-          <type>
-            <configurationElementMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/ProxyConfigurationElement" />
-          </type>
-        </elementProperty>
         <elementProperty name="MusicPlayer" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="musicPlayer" isReadOnly="false">
           <type>
             <configurationElementMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/MusicPlayerElement" />
@@ -25,48 +20,6 @@
         </elementProperty>
       </elementProperties>
     </configurationSection>
-    <configurationElement name="ProxyConfigurationElement">
-      <elementProperties>
-        <elementProperty name="Address" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="address" isReadOnly="false">
-          <type>
-            <configurationElementMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/ProxyAddressElement" />
-          </type>
-        </elementProperty>
-        <elementProperty name="Security" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="security" isReadOnly="false">
-          <type>
-            <configurationElementMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/ProxySecurityElement" />
-          </type>
-        </elementProperty>
-      </elementProperties>
-    </configurationElement>
-    <configurationElement name="ProxySecurityElement">
-      <attributeProperties>
-        <attributeProperty name="UserName" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="userName" isReadOnly="false">
-          <type>
-            <externalTypeMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/String" />
-          </type>
-        </attributeProperty>
-        <attributeProperty name="Password" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="password" isReadOnly="false">
-          <type>
-            <externalTypeMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/String" />
-          </type>
-        </attributeProperty>
-      </attributeProperties>
-    </configurationElement>
-    <configurationElement name="ProxyAddressElement">
-      <attributeProperties>
-        <attributeProperty name="Url" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="url" isReadOnly="false">
-          <type>
-            <externalTypeMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/String" />
-          </type>
-        </attributeProperty>
-        <attributeProperty name="Port" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="port" isReadOnly="false">
-          <type>
-            <externalTypeMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/Int32" />
-          </type>
-        </attributeProperty>
-      </attributeProperties>
-    </configurationElement>
     <configurationElement name="MusicPlayerElement">
       <attributeProperties>
         <attributeProperty name="Path" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="path" isReadOnly="false">

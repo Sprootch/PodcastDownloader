@@ -22,19 +22,19 @@ namespace Core
         /// <summary>
         /// The XML name of the PodcastDownloaderConfiguration Configuration Section.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.2.0")]
         internal const string PodcastDownloaderConfigurationSectionName = "podcastDownloaderConfiguration";
         
         /// <summary>
         /// The XML path of the PodcastDownloaderConfiguration Configuration Section.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.2.0")]
         internal const string PodcastDownloaderConfigurationSectionPath = "podcastDownloaderConfiguration";
         
         /// <summary>
         /// Gets the PodcastDownloaderConfiguration instance.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.2.0")]
         public static global::Core.PodcastDownloaderConfiguration Instance
         {
             get
@@ -48,36 +48,10 @@ namespace Core
         /// <summary>
         /// Gets a value indicating whether the element is read-only.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.2.0")]
         public override bool IsReadOnly()
         {
             return false;
-        }
-        #endregion
-        
-        #region Proxy Property
-        /// <summary>
-        /// The XML name of the <see cref="Proxy"/> property.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        internal const string ProxyPropertyName = "proxy";
-        
-        /// <summary>
-        /// Gets or sets the Proxy.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The Proxy.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Core.PodcastDownloaderConfiguration.ProxyPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
-        public virtual global::Core.ProxyConfigurationElement Proxy
-        {
-            get
-            {
-                return ((global::Core.ProxyConfigurationElement)(base[global::Core.PodcastDownloaderConfiguration.ProxyPropertyName]));
-            }
-            set
-            {
-                base[global::Core.PodcastDownloaderConfiguration.ProxyPropertyName] = value;
-            }
         }
         #endregion
         
@@ -85,13 +59,13 @@ namespace Core
         /// <summary>
         /// The XML name of the <see cref="MusicPlayer"/> property.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.2.0")]
         internal const string MusicPlayerPropertyName = "musicPlayer";
         
         /// <summary>
         /// Gets or sets the MusicPlayer.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.2.0")]
         [global::System.ComponentModel.DescriptionAttribute("The MusicPlayer.")]
         [global::System.Configuration.ConfigurationPropertyAttribute(global::Core.PodcastDownloaderConfiguration.MusicPlayerPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
         public virtual global::Core.MusicPlayerElement MusicPlayer
@@ -113,228 +87,6 @@ namespace Core
     
     
     /// <summary>
-    /// The ProxyConfigurationElement Configuration Element.
-    /// </summary>
-    public partial class ProxyConfigurationElement : global::System.Configuration.ConfigurationElement
-    {
-        
-        #region IsReadOnly override
-        /// <summary>
-        /// Gets a value indicating whether the element is read-only.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        public override bool IsReadOnly()
-        {
-            return false;
-        }
-        #endregion
-        
-        #region Address Property
-        /// <summary>
-        /// The XML name of the <see cref="Address"/> property.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        internal const string AddressPropertyName = "address";
-        
-        /// <summary>
-        /// Gets or sets the Address.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The Address.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Core.ProxyConfigurationElement.AddressPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
-        public virtual global::Core.ProxyAddressElement Address
-        {
-            get
-            {
-                return ((global::Core.ProxyAddressElement)(base[global::Core.ProxyConfigurationElement.AddressPropertyName]));
-            }
-            set
-            {
-                base[global::Core.ProxyConfigurationElement.AddressPropertyName] = value;
-            }
-        }
-        #endregion
-        
-        #region Security Property
-        /// <summary>
-        /// The XML name of the <see cref="Security"/> property.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        internal const string SecurityPropertyName = "security";
-        
-        /// <summary>
-        /// Gets or sets the Security.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The Security.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Core.ProxyConfigurationElement.SecurityPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
-        public virtual global::Core.ProxySecurityElement Security
-        {
-            get
-            {
-                return ((global::Core.ProxySecurityElement)(base[global::Core.ProxyConfigurationElement.SecurityPropertyName]));
-            }
-            set
-            {
-                base[global::Core.ProxyConfigurationElement.SecurityPropertyName] = value;
-            }
-        }
-        #endregion
-    }
-}
-namespace Core
-{
-    
-    
-    /// <summary>
-    /// The ProxySecurityElement Configuration Element.
-    /// </summary>
-    public partial class ProxySecurityElement : global::System.Configuration.ConfigurationElement
-    {
-        
-        #region IsReadOnly override
-        /// <summary>
-        /// Gets a value indicating whether the element is read-only.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        public override bool IsReadOnly()
-        {
-            return false;
-        }
-        #endregion
-        
-        #region UserName Property
-        /// <summary>
-        /// The XML name of the <see cref="UserName"/> property.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        internal const string UserNamePropertyName = "userName";
-        
-        /// <summary>
-        /// Gets or sets the UserName.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The UserName.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Core.ProxySecurityElement.UserNamePropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
-        public virtual string UserName
-        {
-            get
-            {
-                return ((string)(base[global::Core.ProxySecurityElement.UserNamePropertyName]));
-            }
-            set
-            {
-                base[global::Core.ProxySecurityElement.UserNamePropertyName] = value;
-            }
-        }
-        #endregion
-        
-        #region Password Property
-        /// <summary>
-        /// The XML name of the <see cref="Password"/> property.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        internal const string PasswordPropertyName = "password";
-        
-        /// <summary>
-        /// Gets or sets the Password.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The Password.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Core.ProxySecurityElement.PasswordPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
-        public virtual string Password
-        {
-            get
-            {
-                return ((string)(base[global::Core.ProxySecurityElement.PasswordPropertyName]));
-            }
-            set
-            {
-                base[global::Core.ProxySecurityElement.PasswordPropertyName] = value;
-            }
-        }
-        #endregion
-    }
-}
-namespace Core
-{
-    
-    
-    /// <summary>
-    /// The ProxyAddressElement Configuration Element.
-    /// </summary>
-    public partial class ProxyAddressElement : global::System.Configuration.ConfigurationElement
-    {
-        
-        #region IsReadOnly override
-        /// <summary>
-        /// Gets a value indicating whether the element is read-only.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        public override bool IsReadOnly()
-        {
-            return false;
-        }
-        #endregion
-        
-        #region Url Property
-        /// <summary>
-        /// The XML name of the <see cref="Url"/> property.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        internal const string UrlPropertyName = "url";
-        
-        /// <summary>
-        /// Gets or sets the Url.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The Url.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Core.ProxyAddressElement.UrlPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
-        public virtual string Url
-        {
-            get
-            {
-                return ((string)(base[global::Core.ProxyAddressElement.UrlPropertyName]));
-            }
-            set
-            {
-                base[global::Core.ProxyAddressElement.UrlPropertyName] = value;
-            }
-        }
-        #endregion
-        
-        #region Port Property
-        /// <summary>
-        /// The XML name of the <see cref="Port"/> property.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        internal const string PortPropertyName = "port";
-        
-        /// <summary>
-        /// Gets or sets the Port.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
-        [global::System.ComponentModel.DescriptionAttribute("The Port.")]
-        [global::System.Configuration.ConfigurationPropertyAttribute(global::Core.ProxyAddressElement.PortPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
-        public virtual int Port
-        {
-            get
-            {
-                return ((int)(base[global::Core.ProxyAddressElement.PortPropertyName]));
-            }
-            set
-            {
-                base[global::Core.ProxyAddressElement.PortPropertyName] = value;
-            }
-        }
-        #endregion
-    }
-}
-namespace Core
-{
-    
-    
-    /// <summary>
     /// The MusicPlayerElement Configuration Element.
     /// </summary>
     public partial class MusicPlayerElement : global::System.Configuration.ConfigurationElement
@@ -344,7 +96,7 @@ namespace Core
         /// <summary>
         /// Gets a value indicating whether the element is read-only.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.2.0")]
         public override bool IsReadOnly()
         {
             return false;
@@ -355,13 +107,13 @@ namespace Core
         /// <summary>
         /// The XML name of the <see cref="Path"/> property.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.2.0")]
         internal const string PathPropertyName = "path";
         
         /// <summary>
         /// Gets or sets the Path.
         /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.1.7")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ConfigurationSectionDesigner.CsdFileGenerator", "2.0.2.0")]
         [global::System.ComponentModel.DescriptionAttribute("The Path.")]
         [global::System.Configuration.ConfigurationPropertyAttribute(global::Core.MusicPlayerElement.PathPropertyName, IsRequired=false, IsKey=false, IsDefaultCollection=false)]
         public virtual string Path
