@@ -27,7 +27,8 @@ namespace PodcastDownloaderGUI
             object[] podcasts = await GetLastPodcasts(10);
             progressBar.Style = ProgressBarStyle.Blocks;
 
-            podcastsList.Items.AddRange(podcasts);
+            podcastsList.DataSource = podcasts;
+            podcastsList.DisplayMember = "Title";
             podcastsList.SelectedIndex = 0;
         }
 
