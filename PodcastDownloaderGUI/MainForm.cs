@@ -122,12 +122,16 @@ namespace PodcastDownloaderGUI
 
                 selectedPodcast.Path = Path.Combine(@"C:\Temp\", selectedPodcast.Filename);
 
-                var cts = new CancellationTokenSource();
                 IProgress<int> progress = new Progress<int>(progressPercentage => Form.progressBar.Value = progressPercentage);
-                using (var downloader = new Downloader())
+                CancellationTokenSource cts = new CancellationTokenSource();
+
+                var downloader = new Downloader();
                 {
-                    Task.Run(() => downloader.DownloadPodcast(selectedPodcast, cts.Token, progress))
-                        .ContinueWith(task => Form._currentState = new StoppedState(Form), CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, TaskScheduler.FromCurrentSynchronizationContext());
+                    Task.Run(() => downloader.DownloadPodcastAsync(selectedPodcast, cts.Token, progress))
+                        .ContinueWith(task =>
+                        {
+                            Form._currentState = new StoppedState(Form);
+                        }, CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, TaskScheduler.FromCurrentSynchronizationContext());
                 }
 
                 Form._currentState = new DownloadingState(Form, cts);
