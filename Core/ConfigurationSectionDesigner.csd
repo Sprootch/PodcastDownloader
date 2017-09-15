@@ -18,11 +18,30 @@
             <configurationElementMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/MusicPlayerElement" />
           </type>
         </elementProperty>
+        <elementProperty name="Proxy" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="proxy" isReadOnly="false">
+          <type>
+            <configurationElementMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/ProxyConfigurationElement" />
+          </type>
+        </elementProperty>
       </elementProperties>
     </configurationSection>
     <configurationElement name="MusicPlayerElement">
       <attributeProperties>
         <attributeProperty name="Path" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="path" isReadOnly="false">
+          <type>
+            <externalTypeMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/String" />
+          </type>
+        </attributeProperty>
+      </attributeProperties>
+    </configurationElement>
+    <configurationElement name="ProxyConfigurationElement">
+      <attributeProperties>
+        <attributeProperty name="Username" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="username" isReadOnly="false">
+          <type>
+            <externalTypeMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/String" />
+          </type>
+        </attributeProperty>
+        <attributeProperty name="Password" isRequired="false" isKey="false" isDefaultCollection="false" xmlName="password" isReadOnly="false">
           <type>
             <externalTypeMoniker name="/690d6f50-3960-4859-9123-a5bef3b75b2d/String" />
           </type>

@@ -18,8 +18,9 @@ namespace Core
         {
             _client = new WebClient
             {
-                Encoding = Encoding.UTF8
+                Encoding = Encoding.UTF8,
             };
+            _client.Proxy.Credentials = new NetworkCredential(PodcastDownloaderConfiguration.Instance.Proxy.Username, PodcastDownloaderConfiguration.Instance.Proxy.Password);
             _client.DownloadProgressChanged += (_, e) =>
             {
                 DownloadProgress?.Invoke(this, e);
