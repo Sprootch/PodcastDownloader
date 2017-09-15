@@ -22,13 +22,24 @@ namespace PodcastDownloaderGUI
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            progressBar.Style = ProgressBarStyle.Marquee;
-            object[] podcasts = await GetLastPodcasts(10);
-            progressBar.Style = ProgressBarStyle.Blocks;
+            try
+            {
+                progressBar.Style = ProgressBarStyle.Marquee;
 
-            podcastsList.DataSource = podcasts;
-            podcastsList.DisplayMember = "Title";
-            podcastsList.SelectedIndex = 0;
+                object[] podcasts = await GetLastPodcasts(10);
+
+                podcastsList.DataSource = podcasts;
+                podcastsList.DisplayMember = "Title";
+                podcastsList.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                progressBar.Style = ProgressBarStyle.Blocks;
+            }
         }
 
         private static async Task<PodcastItem[]> GetLastPodcasts(int numberOfItems)
