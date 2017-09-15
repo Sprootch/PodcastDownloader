@@ -11,14 +11,12 @@ namespace PodcastDownloaderGUI
     public partial class MainForm : Form
     {
         private const string Caption = @"Podcast Downloader";
-        private MusicPlayer _musicPlayer;
         private State _currentState;
 
         public MainForm()
         {
             InitializeComponent();
 
-            _musicPlayer = new MusicPlayer(PodcastDownloaderConfiguration.Instance.MusicPlayer.Path);
             _currentState = new StoppedState(this);
         }
 
@@ -57,13 +55,6 @@ namespace PodcastDownloaderGUI
         private void DownloadButton_Click(object sender, EventArgs e)
         {
             _currentState.Change();
-        }
-
-        private void StartMusicPlayer(PodcastItem podcastItem)
-        {
-            if (!_musicPlayer.IsAvailable) return;
-
-            _musicPlayer.Play(podcastItem.Path);
         }
 
         private void PodcastsList_SelectedIndexChanged(object sender, EventArgs e)
@@ -108,18 +99,20 @@ namespace PodcastDownloaderGUI
 
         class StoppedState : State
         {
+            private MusicPlayer _musicPlayer;
+
             public StoppedState(MainForm form)
                 : base(form)
             {
                 Form.downloadButton.Text = "Download";
                 Form.podcastsList.Enabled = true;
+
+                _musicPlayer = new MusicPlayer(PodcastDownloaderConfiguration.Instance.MusicPlayer.Path);
             }
 
             public override void Change()
             {
                 var selectedPodcast = Form.podcastsList.SelectedItem as PodcastItem;
-                if (selectedPodcast == null) return;
-
                 selectedPodcast.Path = Path.Combine(@"C:\Temp\", selectedPodcast.Filename);
 
                 IProgress<int> progress = new Progress<int>(progressPercentage => Form.progressBar.Value = progressPercentage);
@@ -131,10 +124,18 @@ namespace PodcastDownloaderGUI
                         .ContinueWith(task =>
                         {
                             Form._currentState = new StoppedState(Form);
+                            StartMusicPlayer(selectedPodcast);
                         }, CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, TaskScheduler.FromCurrentSynchronizationContext());
                 }
 
                 Form._currentState = new DownloadingState(Form, cts);
+            }
+
+            private void StartMusicPlayer(PodcastItem podcastItem)
+            {
+                if (!_musicPlayer.IsAvailable) return;
+
+                _musicPlayer.Play(podcastItem.Path);
             }
         }
     }
